@@ -48,10 +48,7 @@ object SharePointBaseExample {
     logger.debug("CAML is: \n" + theXML)
     val documentBuilderFactory: DocumentBuilderFactory = DocumentBuilderFactory.newInstance
     documentBuilderFactory.setValidating(false)
-    val documentBuilder: DocumentBuilder = documentBuilderFactory.newDocumentBuilder
-    val document: Document = documentBuilder.parse(new InputSource(new StringReader(theXML)))
-    val node: Node = document.getDocumentElement
-    return node
+    documentBuilderFactory.newDocumentBuilder.parse(new InputSource(new StringReader(theXML))).getDocumentElement
   }
 
   @throws(classOf[Exception])
@@ -60,7 +57,7 @@ object SharePointBaseExample {
       logger.warn("result was null...")
       return
     }
-    if (!(result.isInstanceOf[Element])) {
+    if (!result.isInstanceOf[Element]) {
       logger.warn("Not sure what to do with this response.  It should be Element, but was: " + result.getClass.getName)
       return
     }
@@ -90,12 +87,12 @@ object SharePointBaseExample {
       })) != -1) ous.write(buffer, 0, read)
     } finally {
       try {
-        if (ous != null) ous.close
+        if (ous != null) ous.close()
       } finally {
-        if (ios != null) ios.close
+        if (ios != null) ios.close()
       }
     }
-    return ous.toByteArray
+    ous.toByteArray
   }
 }
 
