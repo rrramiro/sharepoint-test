@@ -1,0 +1,5 @@
+<QueryOptions>
+	<IncludeMandatoryColumns>TRUE</IncludeMandatoryColumns>
+	<ViewAttributes Scope="RecursiveAll"/> 
+	<DateInUtc>TRUE</DateInUtc> 
+</QueryOptions>

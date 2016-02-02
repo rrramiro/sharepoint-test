@@ -1,0 +1,21 @@
+<Query>
+	<Where>
+	<And>
+		<And>
+			<Contains> 
+				<FieldRef Name="Editor" /> 
+				<Value Type="Text">Chandler</Value>
+			</Contains>
+			<Contains> 
+				<FieldRef Name="FileRef" /> 
+				<Value Type="Text">AuditDeleteTesting</Value>
+			</Contains>		
+		</And>
+		<Eq> 
+			<FieldRef Name="Created_x0020_Date" /> 
+			<Value Type="DateTime">%1s</Value>
+		</Eq>				
+	</And>		
+	
+	</Where>
+</Query>

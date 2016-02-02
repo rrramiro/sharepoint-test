@@ -1,0 +1,233 @@
+
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:import namespace="http://www.w3.org/2001/XMLSchema" />
+      <s:element name="GetSlidesXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strListUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSlidesXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSlidesXMLResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckCollisions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strListUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="slideNames" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckCollisionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckCollisionsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+	   <s:element name="GetSlideInfoByIds">
+	    <s:complexType>
+	      <s:sequence>
+	        <s:element minOccurs="0" maxOccurs="1" name="strListUrl" type="s:string" />
+	        <s:element minOccurs="0" maxOccurs="1" name="slideIds" type="tns:ArrayOfString" />
+	      </s:sequence>
+	    </s:complexType>
+	  </s:element>
+	  <s:complexType name="ArrayOfString">
+	    <s:sequence>
+	      <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+	    </s:sequence>
+	  </s:complexType>
+	  <s:element name="GetSlideInfoByIdsResponse">
+	    <s:complexType>
+	      <s:sequence>
+	        <s:element minOccurs="0" maxOccurs="1" name="GetSlideInfoByIdsResult">
+	          <s:complexType mixed="true">
+	            <s:sequence>
+	              <s:any />
+	            </s:sequence>
+	          </s:complexType>
+	        </s:element>
+	      </s:sequence>
+	    </s:complexType>
+	  </s:element>
+	  <s:element name="Search">
+	    <s:complexType>
+	      <s:sequence>
+	        <s:element minOccurs="0" maxOccurs="1" name="strListUrl" type="s:string" />
+	        <s:element minOccurs="0" maxOccurs="1" name="strSearch" type="s:string" />
+	        <s:element minOccurs="0" maxOccurs="1" name="inputLcid" type="s:unsignedInt" />
+	      </s:sequence>
+	    </s:complexType>
+	  </s:element>
+	  <s:element name="SearchResponse">
+	    <s:complexType>
+	      <s:sequence>
+	        <s:element minOccurs="0" maxOccurs="1" name="SearchResult">
+	          <s:complexType mixed="true">
+	            <s:sequence>
+	              <s:any />
+	            </s:sequence>
+	          </s:complexType>
+	        </s:element>
+	      </s:sequence>
+	    </s:complexType>
+	  </s:element>
+	</s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetSlidesXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSlidesXML" />
+  </wsdl:message>
+  <wsdl:message name="GetSlidesXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSlidesXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckCollisionsSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckCollisions" />
+  </wsdl:message>
+  <wsdl:message name="CheckCollisionsSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckCollisionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSlideInfoByIdsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSlideInfoByIds" />
+  </wsdl:message>
+  <wsdl:message name="GetSlideInfoByIdsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSlideInfoByIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchSoapIn">
+    <wsdl:part name="parameters" element="tns:Search" />
+  </wsdl:message>
+  <wsdl:message name="SearchSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SlideLibrarySoap">
+    <wsdl:operation name="GetSlidesXML">
+      <wsdl:input message="tns:GetSlidesXMLSoapIn" />
+      <wsdl:output message="tns:GetSlidesXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckCollisions">
+      <wsdl:input message="tns:CheckCollisionsSoapIn" />
+      <wsdl:output message="tns:CheckCollisionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSlideInfoByIds">
+      <wsdl:input message="tns:GetSlideInfoByIdsSoapIn" />
+      <wsdl:output message="tns:GetSlideInfoByIdsSoapOut" />
+    </wsdl:operation>
+   	<wsdl:operation name="Search">
+      <wsdl:input message="tns:SearchSoapIn" />
+      <wsdl:output message="tns:SearchSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SlideLibrarySoap" type="tns:SlideLibrarySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="GetSlidesXML">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/GetSlidesXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCollisions">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/CheckCollisions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+   	<wsdl:operation name="GetSlideInfoByIds">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/GetSlideInfoByIds" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+	<wsdl:operation name="Search">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/Search" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SlideLibrarySoap12" type="tns:SlideLibrarySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <wsdl:operation name="GetSlidesXML">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/GetSlidesXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCollisions">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/CheckCollisions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+	<wsdl:operation name="GetSlideInfoByIds">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/GetSlideInfoByIds" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap12:operation soapAction="http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/Search" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SlideLibrary">
+    <wsdl:port name="SlideLibrarySoap" binding="tns:SlideLibrarySoap">
+      <soap:address location="http://infopoint/pub/bnf/_vti_bin/SlideLibrary.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SlideLibrarySoap12" binding="tns:SlideLibrarySoap12">
+      <soap12:address location="http://infopoint/pub/bnf/_vti_bin/SlideLibrary.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

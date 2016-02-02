@@ -1,0 +1,12 @@
+*.class
+*.log
+*.cache
+*.xlsx#
+.idea
+.cache/
+.history/
+.lib/
+target/
+project/plugins/project/
+/.idea_modules
+*.iml

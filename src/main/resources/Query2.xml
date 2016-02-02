@@ -1,0 +1,14 @@
+<Query>
+	<Where>
+		<And>
+			<BeginsWith>
+				<FieldRef Name="Editor"/>
+				<Value Type="Text">Ramiro</Value>
+			</BeginsWith>
+            <Contains>
+                <FieldRef Name= "Editor"/>
+                <Value Type= "Text">Ramiro</Value>
+            </Contains>
+		</And>
+	</Where>
+</Query>
