@@ -8,6 +8,20 @@ object build extends sbt.Build {
 
   lazy val dispatchV = "0.11.3"
 
+  lazy val javaimpl = (project in file("javaimpl")).settings(
+    organization  := "com.example",
+    scalaVersion  := "2.11.8",
+    name := "SharePointTest-java",
+    libraryDependencies ++= Seq(
+      "org.slf4j" % "jcl-over-slf4j" % "1.7.14",
+      "org.slf4j" % "slf4j-simple" % "1.7.14",
+      "org.scala-lang.modules" %% "scala-xml" % "1.0.4",
+      "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.1",
+      "org.scalatest" %% "scalatest" % "2.2.6" % "test",
+      "net.databinder.dispatch" %% "dispatch-core" % dispatchV
+    )
+  )
+
   lazy val root = (project in file("."))
     .settings(scalaxbSettings: _*)
     .settings(
