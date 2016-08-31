@@ -16,18 +16,31 @@ trait DispatchHttpAuthClientsAsync extends HttpClientsAsync{
 
   trait DispatchHttpClient extends HttpClient {
     import dispatch._, Defaults._
-    lazy val http = Http.configure(_.
-      setRequestTimeoutInMs(requestTimeout.toMillis.toInt).
-      setConnectionTimeoutInMs(connectionTimeout.toMillis.toInt))
+    lazy val http = Http.configure {
+      _.setRequestTimeout(requestTimeout.toMillis.toInt)
+      .setConnectTimeout(connectionTimeout.toMillis.toInt)
+      .setFollowRedirect(true)
+    }
 
-    def request(in: String, address: java.net.URI, headers: Map[String, String]): concurrent.Future[String] = {
+    def request(in: String, address: java.net.URI, headers: Map[String, String]): Future[String] = {
+      val user = properties.getProperty("username")
+      val password = properties.getProperty("password")
+
+      val (domain, principal) = user.split('\\').toList match {
+        case d :: p :: Nil => d -> p
+        case _ => "" -> user
+      }
+
       val realm = new RealmBuilder()
-        .setScheme(AuthScheme.DIGEST)
-        .setPrincipal(properties.getProperty("username"))
-        .setPassword(properties.getProperty("password"))
+        .setScheme(AuthScheme.NTLM)
+        .setPrincipal(principal)
+        .setNtlmDomain(domain)
+        .setPassword(password)
+        .setNtlmHost("infopoint")
         .build()
 
-      val req = url(address.toString).setBodyEncoding("UTF-8").setRealm(realm) <:< headers << in
+      val req: Req = url(address.toString).setBodyEncoding("UTF-8").setRealm(realm) <:< headers << in
+
       http(req > as.String)
     }
   }

@@ -67,9 +67,9 @@ class SharePointListExample extends SharePointBaseExample {
 
   @throws(classOf[Exception])
   protected override def initialize {
-    SharePointListExample.properties.load(getClass.getResourceAsStream("/SharePointListExample.properties"))
+    SharePointListExample.properties.load(getClass.getClassLoader.getResourceAsStream("SharePointListExample.properties"))
     super.initialize
-    this.query = new String(SharePointBaseExample.readAll(new File(this.getClass.getResource("/Query2.xml").toURI)))
-    this.queryOptions = new String(SharePointBaseExample.readAll(new File(this.getClass.getResource("/QueryOptions2.xml").toURI)))
+    this.query = new String(SharePointBaseExample.readAll(new File(this.getClass.getClassLoader.getResource("Query2.xml").toURI)))
+    this.queryOptions = new String(SharePointBaseExample.readAll(new File(this.getClass.getClassLoader.getResource("QueryOptions2.xml").toURI)))
   }
 }
