@@ -22,6 +22,16 @@ object build extends sbt.Build {
     )
   )
 
+  lazy val javaimpl2 = (project in file("javaimpl2")).settings(
+    organization  := "com.example",
+    scalaVersion  := "2.11.8",
+    name := "SharePointTest-java2",
+    libraryDependencies ++= Seq(
+      "commons-logging" % "commons-logging" % "1.2",
+      "log4j" % "log4j" % "1.2.17"
+    )
+  )
+
   lazy val root = (project in file("."))
     .settings(scalaxbSettings: _*)
     .settings(
