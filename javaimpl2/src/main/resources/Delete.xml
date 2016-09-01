@@ -1,0 +1,6 @@
+<Batch OnError="Continue" ListVersion="1" >
+	<Method ID="1" Cmd="Delete">
+      <Field Name="ID">%1s</Field>
+	  <Field Name="FileRef" target="blank">%2s</Field>
+	</Method>			   
+</Batch>
